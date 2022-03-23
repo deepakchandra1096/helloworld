@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sendinblue
+  labels:
+    app: sendinblue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sendinblue
+  template:
+    metadata:
+      labels:
+        app: sendinblue
+    spec:
+      containers:
+      - name: sendinblue
+        image: deepak1096/sendinblue:latest
+        ports:
+        - containerPort: 8080
