@@ -37,7 +37,7 @@ jobs:
       run: docker build -t sendinblue:latest .
         
     - name: Docker run
-      run: docker run -it sendinblue:latest
+      run: docker run sendinblue:latest
       
       
       
