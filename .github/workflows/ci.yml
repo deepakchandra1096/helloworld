@@ -29,3 +29,15 @@ jobs:
       
     - name: install binary
       run: go install
+      
+    - name: Run binary
+      run:  go run main.go
+        
+    - name: Docker
+      run: |
+        docker build -t sendinblue:latest .
+        docker run -it sendinblue:latest
+      
+      
+      
+      
