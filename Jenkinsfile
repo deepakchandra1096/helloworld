@@ -1,6 +1,7 @@
 pipeline {
     parameters {
         string(name: 'VERSION', defaultValue: '1.00', description: 'The tag for go docker image')
+        string(name: 'namespace', defaultValue: 'qa', description: 'The namespace for kubernetes')
     }
     environment {
         DEPLOY = "${env.BRANCH_NAME == "master" ? "true" : "false"}"
@@ -52,7 +53,7 @@ pipeline {
             }
             steps {
                 container('helm') {
-                    sh "helm upgrade --install --force --set name=${NAME}  --set image.repository=${REGISTRY} ${NAME} --set image.tag=${VERSION} --set replicaCount=2 ./helm"
+                    sh "helm upgrade --install --force --set name=${NAME}  --set image.repository=${REGISTRY} ${NAME} --set image.tag=${VERSION} --set replicaCount=2 ./helm -n ${namespace}"
                 }
             }
         }
